@@ -1,0 +1,33 @@
+<div class="login-main">
+    <div class="login-box">
+
+        <div class="login-text1">
+            <p class="brand">Fundo</p>
+            <p class="log-in">Sign in</p>
+            <p class="use-account">Use your Fundo Account</p>
+        </div>
+        
+        <div class="login-gap"></div>
+        <form [formGroup]="loginForm" class="login-btn">
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Email or phone</mat-label>
+                <input formControlName="email" matInput placeholder="Email or phone*" type="text" required>
+                <mat-error *ngIf="submitted && loginControls?.['email']?.['errors']?.['required']">Email is
+                    required</mat-error>
+                <mat-error *ngIf="submitted && loginControls?.['email']?.['errors']?.['email']">Incorrect Email
+                    Format</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Password</mat-label>
+                <input formControlName="password" matInput placeholder="Password*" type="password" required>
+                <mat-error *ngIf="submitted && loginControls?.['password']?.['errors']?.['required']">password is required</mat-error>
+                <mat-error *ngIf="submitted && loginControls?.['password']?.['errors']?.['password']">password is incorrect</mat-error>
+            </mat-form-field>
+        </form>
+        <button style="border: none;" mat-stroked-button>forgot-password</button>
+        <div class="login-buttons">
+            <button routerLink="/register" mat-button color="accent">Create account</button>
+            <button mat-raised-button color="primary" (click)="handleLogin()">Login</button>
+        </div>
+    </div>
+</div>

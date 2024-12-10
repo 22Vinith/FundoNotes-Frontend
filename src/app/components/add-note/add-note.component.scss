@@ -1,0 +1,58 @@
+.outer-add{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+}
+
+.note-add{
+    border: 1px solid black;
+    height: max-content;
+    width: 800px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 25px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.note{
+    height: max-content;
+    width: max-content;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.notechild{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    height: max-content;
+    width: 800px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 25px;
+    border-radius: 10px;
+}
+
+.notechild input{
+    border: none;
+    font-size: 25px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.buttons{
+    display: flex;  
+    justify-content: space-evenly;
+    width: 220px;
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,61 @@
+<div class="register-main">
+    <div class="register-box">
+        <form [formGroup]="registerForm" class="register-leftbox">
+            <div class="register-text1">
+                <p class="register-Title">Fundo</p>
+                <p class="register-subtitle">Create Your Fundoo Account</p>
+            </div>
+            <div class="register-text2">
+                <mat-form-field appearance="fill" class="full-width">
+                    <mat-label>FirstName</mat-label>
+                    <input formControlName="firstName" matInput placeholder="FirstName*">
+                    <mat-error *ngIf="submitted && registerControls?.['firstName']?.['errors']?.['required']">Firstname is required</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="full-width">
+                    <mat-label>LastName</mat-label>
+                    <input formControlName="lastName" matInput placeholder="LastName*">
+                    <mat-error *ngIf="submitted && registerControls?.['lastName']?.['errors']?.['required']">Lastname is
+                        required</mat-error>
+                </mat-form-field>
+            </div>
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Email</mat-label>
+                <input formControlName="email" matInput placeholder="Email">
+                <mat-error *ngIf="submitted && registerControls?.['email']?.['errors']?.['required']">Email is
+                    required</mat-error>
+                <mat-error *ngIf="submitted && registerControls?.['email']?.['errors']?.['email']">Incorrect Email
+                    Format</mat-error>
+            </mat-form-field>
+            <p class="register-par">You can use letters, numbers & periods</p>
+            <div class="register-text4">
+                <mat-form-field appearance="fill" class="full-width">
+                    <mat-label>Password</mat-label>
+                    <input formControlName="password" matInput placeholder="Password*">
+                    <mat-error *ngIf="submitted && registerControls?.['password']?.['errors']?.['required']">password is
+                        required</mat-error>
+                    <mat-error *ngIf="submitted && registerControls?.['password']?.['errors']?.['password']">password is
+                        incorrect</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="full-width">
+                    <mat-label>Confirm-Password</mat-label>
+                    <input formControlName="confirmPassword" matInput placeholder="Confirm-Password*" type="password">
+                    <mat-error
+                        *ngIf="submitted && registerControls?.['confirmPassword']?.['errors']?.['required']">confirm-password
+                        is required</mat-error>
+                    <mat-error
+                        *ngIf="submitted && registerControls?.['confirmPassword']?.['errors']?.['password']">password is
+                        incorrect</mat-error>
+                </mat-form-field>
+            </div>
+            <p class="register-par1">Use 8 or more characters with a mix of letters, numbers & symbols</p>
+            <div class="register-text5">
+                <button routerLink='' style="border: none;" mat-stroked-button>Sign in instead</button>
+                <button mat-raised-button color="primary" (click)="handleRegister()">Register</button>
+            </div>
+        </form>
+        <div class="register-rightbox">
+            <img src="../../../assets/Screenshot 2024-12-06 104708.png " alt="image">
+        </div>
+
+    </div>
+</div>

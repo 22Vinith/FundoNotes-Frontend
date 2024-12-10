@@ -1,0 +1,46 @@
+<div class="outer-add">
+<div class="note-add" (click)="addNoteToggle('toggle')"*ngIf="!expandAddNote else expandNote">
+<span>Take a note......</span>
+<div>
+<button mat-icon-button aria-label="Brush button" matTooltip="Brush">
+    <mat-icon svgIcon="brush-icon" aria-hidden="false" aria-label="add Brush icon"></mat-icon>
+</button>
+<button mat-icon-button aria-label="list button" matTooltip="List">
+    <mat-icon svgIcon="list-view-icon" aria-hidden="false" aria-label="add list icon"></mat-icon>
+</button>
+<button mat-icon-button aria-label="img button" matTooltip="Add Image">
+    <mat-icon svgIcon="img-icon" aria-hidden="false" aria-label="add image icon"></mat-icon>
+</button>
+</div>
+</div>
+</div>
+
+<ng-template #expandNote>
+<div class="note">
+    <div class="notechild">
+    <input class="title" type="text" placeholder="Title">
+    <input class="desc" type="text" placeholder="Description">
+    <div class="buttons">
+        <button mat-icon-button aria-label="reminder button" matTooltip="remainder">
+            <mat-icon svgIcon="remainder-icon" aria-hidden="false" aria-label="add remainder icon"></mat-icon>
+        </button>
+        <button mat-icon-button aria-label="collaborator button" matTooltip="collaborator">
+            <mat-icon svgIcon="collaborator-icon" aria-hidden="false" aria-label="add collaborator icon"></mat-icon>
+        </button>
+        <button mat-icon-button aria-label="colorpallete button" matTooltip="colorpallete">
+            <mat-icon svgIcon="colorpallete-icon" aria-hidden="false" aria-label="add colorpallete icon"></mat-icon>
+        </button>
+        <button mat-icon-button aria-label="img button" matTooltip="img">
+            <mat-icon svgIcon="img-icon" aria-hidden="false" aria-label="add img icon"></mat-icon>
+        </button>  
+        <button mat-icon-button aria-label="archive button" matTooltip="archive">
+            <mat-icon svgIcon="archive-icon" aria-hidden="false" aria-label="add archive icon"></mat-icon>
+        </button>
+        <button mat-icon-button aria-label="more button" matTooltip="more">
+            <mat-icon svgIcon="more-icon" aria-hidden="false" aria-label="add more icon"></mat-icon>
+        </button>
+</div>
+    </div>
+</div>
+</ng-template>
+
