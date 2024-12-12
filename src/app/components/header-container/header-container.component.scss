@@ -1,0 +1,48 @@
+.header-main{
+    display: flex;
+    align-items: center;
+    height: 100px;
+    width:1909px ;
+    border: 1px solid black;
+    justify-content: space-between;
+    // border-radius: 10px;
+    padding: 8px;
+    margin-top: -8px;
+    margin-left: -9px;
+    margin-bottom: 30px;
+}
+
+.header-section1{
+display: flex;
+align-items: center;
+justify-content: space-between;
+width: 180px;
+}
+
+.header-section2 input{
+    width: 800px;
+    height: 75px;
+    border-radius: 10px;
+    font-size: 25px;
+    padding: 30px;
+}
+
+.header-section3{
+display: flex;
+width: 250px;
+justify-content: space-between;
+}
+
+.header-section4{
+    display: flex;
+    width: 150px;
+    justify-content: space-between;
+}
+.mat-mdc-icon-button {
+    height: 60px !important;
+    width: 60px !important;
+}
+.mat-mdc-icon-button svg {
+    height: 40px !important;
+    width: 40px !important;
+}

@@ -1,0 +1,8 @@
+<div style="display: flex; flex-wrap: wrap;">
+<div *ngIf="trashList.length==0">
+<h1>No trash notes</h1>
+</div>
+    <div *ngFor="let trash of trashList" style="width: fit-content;">  
+        <app-note-card [noteDetails]="trash" [container]="'trash'"></app-note-card>
+      </div>
+</div>

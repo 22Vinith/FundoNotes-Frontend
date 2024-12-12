@@ -1,15 +1,38 @@
-<div>
+
+<div class="main">
+    <div class="spann">
+        <span>{{noteDetails?.title}}</span><br> 
+        <span>{{noteDetails?.description}}</span>
+    </div>
+
+<div class="buttons">
     <button mat-icon-button aria-label="reminder button" matTooltip="Reminder">
-        <mat-icon svgIcon="reminder-icon" aria-hidden="false" aria-label="reminder icon"></mat-icon>
+        <mat-icon svgIcon="reminder-icon" aria-hidden="false" aria-label="reminder icon" style="height: 40px; width: 40px;"></mat-icon>
     </button>
     <button mat-icon-button aria-label="collabrator button" matTooltip="Collabrator">
-        <mat-icon svgIcon="collabrator-icon" aria-hidden="false" aria-label="collabrator icon"></mat-icon>
+        <mat-icon svgIcon="collabrator-icon" aria-hidden="false" aria-label="collabrator icon" style="height: 40px; width: 40px;"></mat-icon>
     </button>
     <button mat-icon-button aria-label="color button" matTooltip="Background Color Options" >
-        <mat-icon svgIcon="color-palatte-icon" aria-hidden="false" aria-label="color button icon"></mat-icon>
+        <mat-icon svgIcon="color-palatte-icon" aria-hidden="false" aria-label="color button icon" style="height: 40px; width: 40px;"></mat-icon>
     </button>
     <button mat-icon-button aria-label="img button" matTooltip="Add Image">
-        <mat-icon svgIcon="img-icon" aria-hidden="false" aria-label="add image icon"></mat-icon>
+        <mat-icon svgIcon="img-icon" aria-hidden="false" aria-label="add image icon" style="height: 40px; width: 40px;"></mat-icon>
     </button>
+    <button mat-icon-button aria-label="archive button" matTooltip="Add archive" (click)="handleNotesIconClick('archive')">
+        <mat-icon svgIcon="archive-icon" aria-hidden="false" aria-label="add archive icon" style="height: 40px; width: 40px;"></mat-icon>
+    </button>
+    
+    <button mat-icon-button aria-label="img button" matTooltip="Add Image" [matMenuTriggerFor]="moreMenu">
+        <mat-icon svgIcon="more-icon" aria-hidden="false" aria-label="add image icon" style="height: 40px; width: 40px;"></mat-icon>
+    </button>
+    <mat-menu #moreMenu="matMenu">
+        <button mat-menu-item (click)="handleNotesIconClick('trash')">
+         Delete note
+        </button>
+         
+      </mat-menu>
+      
 </div>
+</div>
+
 

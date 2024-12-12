@@ -5,16 +5,22 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddNoteComponent } from './components/add-note/add-note.component';
 import { NoteCardComponent } from './components/note-card/note-card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderContainerComponent } from './components/header-container/header-container.component';
+import { DashboardContainerComponent } from './components/dashboard-container/dashboard-container.component';
+import { NotesContainerComponent } from './components/notes-container/notes-container.component';
+import { ArchiveContainerComponent } from './components/archive-container/archive-container.component';
+import { TrashContainerComponent } from './components/trash-container/trash-container.component';
 
 
 @NgModule({
@@ -25,8 +31,10 @@ import { HeaderContainerComponent } from './components/header-container/header-c
     AddNoteComponent,
     NoteCardComponent,
     HeaderContainerComponent,
-    
-    
+    DashboardContainerComponent,
+    NotesContainerComponent,
+    ArchiveContainerComponent,
+    TrashContainerComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +45,9 @@ import { HeaderContainerComponent } from './components/header-container/header-c
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

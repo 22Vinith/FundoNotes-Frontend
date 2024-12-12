@@ -32,13 +32,14 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.status == "INVALID") return
 
     //api call
-    this.userService.loginApiCall({email, password}).subscribe({next: (res) => {
+    this.userService.loginApiCall({email, password}).subscribe({next: (res:any) => {
       console.log(res); 
-      localStorage.setItem("authToken", "")  
+      localStorage.setItem("authToken", res.data.token) 
+      this.router.navigate(["/dashboard/notes"]) 
     }, error: (err) => {
       console.log(err);
     }})
-    // this.router.navigate(["/dashboard"])
+    
   }
 
 }
