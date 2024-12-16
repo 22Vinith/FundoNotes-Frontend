@@ -6,9 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard-container.component.scss']
 })
 export class DashboardContainerComponent {
+  drawerState: boolean = false
 constructor(){ }
 
-ngOnIt(){
+ngOnIt(){}
+
+handleDrawerState($event: any) {
 
 }
 }

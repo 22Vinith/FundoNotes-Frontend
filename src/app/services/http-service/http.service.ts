@@ -17,8 +17,10 @@ export class HttpService {
     return this.httpClient.post(endpoint, data, options)
   }
 
-  // putApiCall(endpoint:string,options:any={}){
-  //   return this.httpClient.put(endpoint,options)
-  // }
-
+  putApiCall(endpoint:string,data: any,options:any={}){
+    return this.httpClient.put(endpoint,data,options)
+  }
+  deleteApiCall(endpoint:string, options:any={}){
+    return this.httpClient.delete(endpoint,options)
+  }
 }

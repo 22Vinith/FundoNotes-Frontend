@@ -21,4 +21,15 @@ this.trashList=res.data.filter((note:any)=>
       }
     })
   }
+
+  handleTrashNotesList($event: { data: any, action: string }) {
+    const { data, action } = $event; 
+    console.log($event);
+    if (action === 'delete-forever') {
+      this.trashList = this.trashList.filter((note: any) => note._id !== data._id);
+    }
+    else if(action=='restore'){
+      this.trashList = this.trashList.filter((note: any) => note._id !== data._id);
+    }
+  }
 }

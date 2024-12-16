@@ -1,38 +1,80 @@
-
 <div class="main">
     <div class="spann">
-        <span>{{noteDetails?.title}}</span><br> 
+        <span>{{noteDetails?.title}}</span><br>
         <span>{{noteDetails?.description}}</span>
     </div>
 
-<div class="buttons">
-    <button mat-icon-button aria-label="reminder button" matTooltip="Reminder">
-        <mat-icon svgIcon="reminder-icon" aria-hidden="false" aria-label="reminder icon" style="height: 40px; width: 40px;"></mat-icon>
-    </button>
-    <button mat-icon-button aria-label="collabrator button" matTooltip="Collabrator">
-        <mat-icon svgIcon="collabrator-icon" aria-hidden="false" aria-label="collabrator icon" style="height: 40px; width: 40px;"></mat-icon>
-    </button>
-    <button mat-icon-button aria-label="color button" matTooltip="Background Color Options" >
-        <mat-icon svgIcon="color-palatte-icon" aria-hidden="false" aria-label="color button icon" style="height: 40px; width: 40px;"></mat-icon>
-    </button>
-    <button mat-icon-button aria-label="img button" matTooltip="Add Image">
-        <mat-icon svgIcon="img-icon" aria-hidden="false" aria-label="add image icon" style="height: 40px; width: 40px;"></mat-icon>
-    </button>
-    <button mat-icon-button aria-label="archive button" matTooltip="Add archive" (click)="handleNotesIconClick('archive')">
-        <mat-icon svgIcon="archive-icon" aria-hidden="false" aria-label="add archive icon" style="height: 40px; width: 40px;"></mat-icon>
-    </button>
-    
-    <button mat-icon-button aria-label="img button" matTooltip="Add Image" [matMenuTriggerFor]="moreMenu">
-        <mat-icon svgIcon="more-icon" aria-hidden="false" aria-label="add image icon" style="height: 40px; width: 40px;"></mat-icon>
-    </button>
-    <mat-menu #moreMenu="matMenu">
-        <button mat-menu-item (click)="handleNotesIconClick('trash')">
-         Delete note
+    <div *ngIf="container === 'trash'; else nonTrashTemplate" class="button-row">
+        <!-- Trash container actions -->
+        <button mat-icon-button aria-label="delete-forever button" matTooltip="delete-forever" (click)="handleNotesIconClick('delete-forever')">
+            <mat-icon svgIcon="delete-forever-icon" aria-hidden="false" aria-label="delete-forever icon"
+                style="height: 40px; width: 40px;"></mat-icon>
         </button>
-         
-      </mat-menu>
-      
-</div>
-</div>
+        <button mat-icon-button aria-label="restore button" matTooltip="restore" (click)="handleNotesIconClick('restore')">
+            <mat-icon svgIcon="restore-icon" aria-hidden="false" aria-label="restore icon"
+                style="height: 40px; width: 40px;"></mat-icon>
+        </button>
+    </div>
 
+    <ng-template #nonTrashTemplate>
+        <div class="button-row">
+            <!-- Non-trash actions -->
+            <button mat-icon-button aria-label="reminder button" matTooltip="Reminder">
+                <mat-icon svgIcon="reminder-icon" aria-hidden="false" aria-label="reminder icon"
+                    style="height: 40px; width: 40px;"></mat-icon>
+            </button>
+            <button mat-icon-button aria-label="collaborator button" matTooltip="Collaborator">
+                <mat-icon svgIcon="collabrator-icon" aria-hidden="false" aria-label="collaborator icon"
+                    style="height: 40px; width: 40px;"></mat-icon>
+            </button>
+            <button mat-icon-button aria-label="color button" matTooltip="Background Color Options"
+                [matMenuTriggerFor]="colorMenu">
+                <mat-icon svgIcon="color-palatte-icon" aria-hidden="false" aria-label="color button icon"
+                    style="height: 40px; width: 40px;"></mat-icon>
+            </button>
+            <button mat-icon-button aria-label="img button" matTooltip="Add Image">
+                <mat-icon svgIcon="img-icon" aria-hidden="false" aria-label="add image icon"
+                    style="height: 40px; width: 40px;"></mat-icon>
+            </button>
 
+            <!-- Show Archive or Unarchive based on container -->
+            <button *ngIf="container === 'notes'; else unarchiveTemplate" mat-icon-button aria-label="archive button"
+                matTooltip="Add to archive" (click)="handleNotesIconClick('archive')">
+                <mat-icon svgIcon="archive-icon" aria-hidden="false" aria-label="archive icon"
+                    style="height: 40px; width: 40px;"></mat-icon>
+            </button>
+            <ng-template #unarchiveTemplate>
+                <button mat-icon-button aria-label="unarchive button" matTooltip="Unarchive"
+                    (click)="handleNotesIconClick('unarchive')">
+                    <mat-icon svgIcon="unarchive-icon" aria-hidden="false" aria-label="unarchive icon"
+                        style="height: 40px; width: 40px;"></mat-icon>
+                </button>
+            </ng-template>
+
+            <button mat-icon-button aria-label="more options button" matTooltip="More Options"
+                [matMenuTriggerFor]="moreMenu">
+                <mat-icon svgIcon="more-icon" aria-hidden="false" aria-label="more options icon"
+                    style="height: 40px; width: 40px;"></mat-icon>
+            </button>
+            <mat-menu #moreMenu="matMenu">
+                <button mat-menu-item (click)="handleNotesIconClick('trash')">Delete note</button>
+            </mat-menu>
+            <mat-menu #colorMenu="matMenu">
+                <div class="color-palate-cnt">
+                    <div class="col1" matTooltip="Default" (click)="handleNotesIconClick('#FFFFFF')"></div>
+                    <div class="col2" matTooltip="Coral" (click)="handleNotesIconClick('#FAAFA8')"></div>
+                    <div class="col3" matTooltip="Peach" (click)="handleNotesIconClick('#F39F76')"></div>
+                    <div class="col4" matTooltip="Sand" (click)="handleNotesIconClick('#FFF8B8')"></div>
+                    <div class="col5" matTooltip="Mint" (click)="handleNotesIconClick('#E2F6D3')"></div>
+                    <div class="col6" matTooltip="Sage" (click)="handleNotesIconClick('#B4DDD3')"></div>
+                    <div class="col7" matTooltip="Fog" (click)="handleNotesIconClick('#D4E4ED')"></div>
+                    <div class="col8" matTooltip="Storm" (click)="handleNotesIconClick('#AECCDC')"></div>
+                    <div class="col9" matTooltip="Dusk" (click)="handleNotesIconClick('#D3BFDB')"></div>
+                    <div class="col10" matTooltip="Blossom" (click)="handleNotesIconClick('#F6E2DD')"></div>
+                    <div class="col11" matTooltip="Clay" (click)="handleNotesIconClick('#E9E3D4')"></div>
+                    <div class="col12" matTooltip="Chalk" (click)="handleNotesIconClick('#EFEFF1')"></div>
+                </div>
+            </mat-menu>
+        </div>
+    </ng-template>
+</div>

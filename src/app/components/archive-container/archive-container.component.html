@@ -1,13 +1,12 @@
 <div style="display: flex; flex-wrap: wrap;">
-    <!-- Show message if no archive notes exist -->
-    <div *ngIf="archiveList.length === 0">
-      <h1>No archive notes</h1>
-    </div>
-  
-    <!-- Iterate over archiveList and display each archive note -->
-    <div *ngFor="let archive of archiveList" style="width: fit-content;">  
-      <app-note-card [noteDetails]="archive" [container]="'archive'"></app-note-card>
-    </div>
-
+  <!-- Show message if no archive notes exist -->
+  <div *ngIf="archiveList.length === 0">
+    <h1>No archive notes</h1>
   </div>
-  
+
+  <!-- Iterate over archiveList and display each archive note -->
+  <div *ngFor="let note of archiveList" style="width: fit-content;">
+    <app-note-card [noteDetails]="note" (updateList)="handleArchiveNotesList($event)" [container]="'archive'"></app-note-card>
+  </div>
+
+</div>

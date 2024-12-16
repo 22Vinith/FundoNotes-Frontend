@@ -3,6 +3,6 @@
 <h1>No trash notes</h1>
 </div>
     <div *ngFor="let trash of trashList" style="width: fit-content;">  
-        <app-note-card [noteDetails]="trash" [container]="'trash'"></app-note-card>
+        <app-note-card [noteDetails]="trash" (updateList)="handleTrashNotesList($event)"[container]="'trash'"></app-note-card>
       </div>
 </div>

@@ -1,2 +1,10 @@
 <app-header-container></app-header-container>
-<router-outlet></router-outlet>
+<mat-drawer-container class="example-container" [hasBackdrop]="false">
+    <mat-drawer #drawer [mode]="'over'" [opened]="drawerState">I'm a drawer</mat-drawer>
+    <mat-drawer-content>
+        <div></div>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+  </mat-drawer-container>
+  
+
