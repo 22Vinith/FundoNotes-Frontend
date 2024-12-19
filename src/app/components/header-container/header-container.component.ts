@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data-service/data.service';
 import { IMG_ICON, LIST_VIEW_ICON, MENU_ICON, OTHER_MENU_ICON, REFRESH_ICON, SEARCH_ICON, SETTING_ICON } from 'src/assets/svg-icons';
 
@@ -13,7 +14,7 @@ import { IMG_ICON, LIST_VIEW_ICON, MENU_ICON, OTHER_MENU_ICON, REFRESH_ICON, SEA
 export class HeaderContainerComponent {
   searchQuery: string = ""
   @Output() handledrawer=new EventEmitter();
-  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private dataService: DataService) {
+  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private dataService: DataService, private router:Router) {
     iconRegistry.addSvgIconLiteral('mainmenu-icon', sanitizer.bypassSecurityTrustHtml(MENU_ICON));
     iconRegistry.addSvgIconLiteral('refresh-icon', sanitizer.bypassSecurityTrustHtml(REFRESH_ICON));
     iconRegistry.addSvgIconLiteral('list-icon', sanitizer.bypassSecurityTrustHtml(LIST_VIEW_ICON));
@@ -25,9 +26,13 @@ export class HeaderContainerComponent {
 
   }
   toggledrawer(){
-    this.handledrawer.emit({drawerState:true})
+    this.handledrawer.emit()
   }
   handleSearchQuery() {
     this.dataService.updateSearchQuery(this.searchQuery)
+  }
+
+  handleLogout(action:string){
+    this.router.navigate([""]) ;
   }
 }

@@ -49,6 +49,12 @@ handleArchiveNotesList($event: { data: any, action: string }) {
   if (action === 'unarchive'||action=='trash') {
     this.archiveList = this.archiveList.filter((note: any) => note._id !== data._id);
   }
+  else if(action == "color"){
+    this.archiveList = this.archiveList.map((note) => {
+      if(note._id == data._id) return data
+      return note
+    })
+  }
 } 
 
 ngOnDestroy() {

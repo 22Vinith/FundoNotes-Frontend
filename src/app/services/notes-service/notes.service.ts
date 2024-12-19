@@ -36,5 +36,9 @@ export class NotesService {
   deletePermanently(data:any){
 return this.httpService.deleteApiCall(`http://localhost:3000/api/v1/notes/${data._id}/delete`,{headers: this.getAuthHeader()})
   }
+
+  updateApiCall(data:any){
+    return this.httpService.putApiCall(`http://localhost:3000/api/v1/notes/${data._id}/update`,data,{headers: this.getAuthHeader()})
+  }
 }
 

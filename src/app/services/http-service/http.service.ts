@@ -23,4 +23,5 @@ export class HttpService {
   deleteApiCall(endpoint:string, options:any={}){
     return this.httpClient.delete(endpoint,options)
   }
+
 }

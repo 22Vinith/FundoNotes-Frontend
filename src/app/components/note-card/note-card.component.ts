@@ -26,7 +26,7 @@ export class NoteCardComponent {
     iconRegistry.addSvgIconLiteral('unarchive-icon', sanitizer.bypassSecurityTrustHtml(UNARCHIVE_ICON));
   }
 
-  handleNotesIconClick(action: string) {
+  handleNotesIconClick(action: string, color: string = "#ffffff") {
    
     //based on action call the api
     if(action=='archive'){
@@ -78,6 +78,18 @@ export class NoteCardComponent {
           console.log(err);
         }
       })
+    }
+    else if(action == "color") {
+      this.noteDetails.color = color
+      this.noteServices.updateApiCall(this.noteDetails).subscribe({
+        next:(res:any)=>{
+          console.log(res);
+        },
+        error:(err:any)=>{
+          console.log(err);
+        }
+      })
+      
     }
     this.updateList.emit({data: this.noteDetails, action: action})
   }

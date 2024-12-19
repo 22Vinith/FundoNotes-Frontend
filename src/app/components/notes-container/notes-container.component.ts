@@ -47,12 +47,15 @@ export class NotesContainerComponent implements OnInit, OnDestroy {
     console.log($event);
     const {data, action} = $event
     if(action == "add")
-      this.notesList = [$event, ...this.notesList]
+      this.notesList = [data, ...this.notesList]
     else if(action == "trash" || action == "archive"){
       this.notesList = this.notesList.filter((note: any) => note._id != data._id)
     }
-    else if (action=='restore'){
-      this.notesList = [$event, ...this.notesList]
+    else if(action == "color"){
+      this.notesList = this.notesList.map((note) => {
+        if(note._id == data._id) return data
+        return note
+      })
     }
   }
 

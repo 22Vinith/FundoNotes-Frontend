@@ -27,8 +27,19 @@
         <button mat-icon-button aria-label="mainmenu button" matTooltip="mainmenu">
             <mat-icon svgIcon="othermenu-icon" aria-hidden="false" aria-label="add mainmenu icon" style="height: 40px; width: 40px;"></mat-icon>
         </button>
-        <button mat-icon-button aria-label="mainmenu button" matTooltip="mainmenu">
-            <mat-icon svgIcon="image-icon" aria-hidden="false" aria-label="add mainmenu icon" style="height: 40px; width: 40px;"></mat-icon>
+     
+        <button mat-icon-button aria-label="mainmenu button" matTooltip="mainmenu"  [matMenuTriggerFor]="moreMenu">
+            <!-- <mat-icon svgIcon="image-icon" aria-hidden="false" aria-label="add mainmenu icon" style="height: 40px; width: 40px;"></mat-icon> -->
+            <img src="../../../assets/v logo.png" alt="Logo" style="height: 40px; width: 40px;" />
+            <!-- <mat-icon svgIcon="more-icon" aria-hidden="false" aria-label="more options icon"
+            style="height: 40px; width: 40px;"></mat-icon> -->
         </button>
+        <mat-menu #moreMenu="matMenu">
+            <!-- <mat-icon svgIcon="image-icon" aria-hidden="false" aria-label="add mainmenu icon" style="height: 40px; width: 40px;"></mat-icon> -->
+            <img src="../../../assets/v logo.png" alt="Logo" style="height: 40px; width: 40px;" />
+            <button mat-menu-item (click)="handleLogout('logout')">Logout</button>
+            <button mat-menu-item>Email</button>
+            <button mat-menu-item>others</button>
+        </mat-menu>
     </div>
 </div>
