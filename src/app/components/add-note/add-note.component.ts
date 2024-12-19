@@ -44,7 +44,6 @@ export class AddNoteComponent {
           console.log(err); 
         }
       })
-    }
-    
+    }  
   }
 }

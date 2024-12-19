@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main" *ngIf="noteDetails?.title && noteDetails?.description">
     <div class="spann">
         <span>{{noteDetails?.title}}</span><br>
         <span>{{noteDetails?.description}}</span>
@@ -6,11 +6,13 @@
 
     <div *ngIf="container === 'trash'; else nonTrashTemplate" class="button-row">
         <!-- Trash container actions -->
-        <button mat-icon-button aria-label="delete-forever button" matTooltip="delete-forever" (click)="handleNotesIconClick('delete-forever')">
+        <button mat-icon-button aria-label="delete-forever button" matTooltip="delete-forever"
+            (click)="handleNotesIconClick('delete-forever')">
             <mat-icon svgIcon="delete-forever-icon" aria-hidden="false" aria-label="delete-forever icon"
                 style="height: 40px; width: 40px;"></mat-icon>
         </button>
-        <button mat-icon-button aria-label="restore button" matTooltip="restore" (click)="handleNotesIconClick('restore')">
+        <button mat-icon-button aria-label="restore button" matTooltip="restore"
+            (click)="handleNotesIconClick('restore')">
             <mat-icon svgIcon="restore-icon" aria-hidden="false" aria-label="restore icon"
                 style="height: 40px; width: 40px;"></mat-icon>
         </button>

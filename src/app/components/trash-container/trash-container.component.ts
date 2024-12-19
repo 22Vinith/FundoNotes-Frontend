@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { DataService } from 'src/app/services/data-service/data.service';
 import { NotesService } from 'src/app/services/notes-service/notes.service';
 
 @Component({
@@ -8,8 +10,9 @@ import { NotesService } from 'src/app/services/notes-service/notes.service';
 })
 export class TrashContainerComponent {
 trashList:any[]=[]
-
-  constructor(private noteServices:NotesService){}
+subscription!: Subscription
+ searchQuery: string = ""
+  constructor(private noteServices:NotesService, private dataService:DataService){}
 
   ngOnInit(){
     this.noteServices.getNotesApiCall().subscribe({
@@ -20,16 +23,27 @@ this.trashList=res.data.filter((note:any)=>
 )
       }
     })
+
+    this.subscription = this.dataService.currSearchQuery.subscribe({ 
+      next: (res: string) => {
+        this.searchQuery = res
+        console.log(res);
+        
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 
   handleTrashNotesList($event: { data: any, action: string }) {
     const { data, action } = $event; 
     console.log($event);
-    if (action === 'delete-forever') {
-      this.trashList = this.trashList.filter((note: any) => note._id !== data._id);
-    }
-    else if(action=='restore'){
+    if (action === 'delete-forever'|| action=='restore') {
       this.trashList = this.trashList.filter((note: any) => note._id !== data._id);
     }
   }
+  ngOnDestroy() {
+    this.subscription.unsubscribe()
+}
 }

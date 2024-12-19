@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { DataService } from 'src/app/services/data-service/data.service';
 import { NotesService } from 'src/app/services/notes-service/notes.service';
 
 
@@ -7,11 +9,12 @@ import { NotesService } from 'src/app/services/notes-service/notes.service';
   templateUrl: './notes-container.component.html',
   styleUrls: ['./notes-container.component.scss']
 })
-export class NotesContainerComponent implements OnInit {
+export class NotesContainerComponent implements OnInit, OnDestroy {
   notesList: any [] = []
+  searchQuery: string = ""
+  subscription!: Subscription
   
-  
-  constructor(private noteService:NotesService) {}
+  constructor(private noteService:NotesService, private dataService: DataService) {}
 
   ngOnInit() {
     this.noteService.getNotesApiCall().subscribe({
@@ -23,7 +26,22 @@ export class NotesContainerComponent implements OnInit {
         console.log(err);
       }
     });
+    this.subscription = this.dataService.currSearchQuery.subscribe({ 
+      next: (res: string) => {
+        this.searchQuery = res
+        console.log(res);
+        
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
+
+//in the above subscription 1st line it access the data service currSearchQuery(bcz currSearchQuery in the data service
+// always keeps emiting those who access it and listening to it(means subscribe )) then the updated string value from the
+// data service is assigned to this 'this.searchQuery' in this file and then it is passed to the search pipe  
+
 
   handleNotesList($event: {data: any, action: string}) {
     console.log($event);
@@ -37,4 +55,12 @@ export class NotesContainerComponent implements OnInit {
       this.notesList = [$event, ...this.notesList]
     }
   }
+
+  ngOnDestroy() {
+      this.subscription.unsubscribe()
+  }
 }
+
+//ngOnDestroy is used to unsubscribe it 
+//all these are used in ngOnInit bcz it need to take sudden action based on the search or updated string 
+//And the pipe is called  in the template of this file bcz it is the reason for creating the note-card

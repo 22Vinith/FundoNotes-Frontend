@@ -16,7 +16,7 @@ export class NotesService {
 
   //get notes api
   getNotesApiCall():any {
-    return this.httpService.getApiCall("http://localhost:3000/api/v1/notes/?page=1&limit=100", {headers: this.getAuthHeader()})
+    return this.httpService.getApiCall("http://localhost:3000/api/v1/notes/?page=1&limit=1000", {headers: this.getAuthHeader()})
   }
 
   addNoteApiCall(data: any) {

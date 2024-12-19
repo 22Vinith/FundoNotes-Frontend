@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Action } from 'rxjs/internal/scheduler/Action';
+import { DataService } from 'src/app/services/data-service/data.service';
 import { NotesService } from 'src/app/services/notes-service/notes.service';
 
 @Component({
@@ -10,8 +12,10 @@ import { NotesService } from 'src/app/services/notes-service/notes.service';
 export class ArchiveContainerComponent {
 
 archiveList:any[]=[]
+searchQuery: string = ""
+subscription!: Subscription
 
-constructor( private noteServices:  NotesService){
+constructor( private noteServices:  NotesService,private dataService:DataService){
 
 }
 
@@ -25,15 +29,30 @@ ngOnInit(){
       console.log(err);
     }
   })
+
+  this.subscription = this.dataService.currSearchQuery.subscribe({ 
+    next: (res: string) => {
+      this.searchQuery = res
+      console.log(res);
+      
+    },
+    error: (err) => {
+      console.log(err);
+    }
+  })
 }
 
 
 handleArchiveNotesList($event: { data: any, action: string }) {
   const { data, action } = $event; 
   console.log($event);
-  if (action === 'unarchive') {
+  if (action === 'unarchive'||action=='trash') {
     this.archiveList = this.archiveList.filter((note: any) => note._id !== data._id);
   }
+} 
+
+ngOnDestroy() {
+  this.subscription.unsubscribe()
 }
 
 }

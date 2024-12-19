@@ -1,6 +1,7 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { DataService } from 'src/app/services/data-service/data.service';
 import { IMG_ICON, LIST_VIEW_ICON, MENU_ICON, OTHER_MENU_ICON, REFRESH_ICON, SEARCH_ICON, SETTING_ICON } from 'src/assets/svg-icons';
 
 @Component({
@@ -10,7 +11,9 @@ import { IMG_ICON, LIST_VIEW_ICON, MENU_ICON, OTHER_MENU_ICON, REFRESH_ICON, SEA
   encapsulation: ViewEncapsulation.None
 })
 export class HeaderContainerComponent {
-  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) {
+  searchQuery: string = ""
+  @Output() handledrawer=new EventEmitter();
+  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private dataService: DataService) {
     iconRegistry.addSvgIconLiteral('mainmenu-icon', sanitizer.bypassSecurityTrustHtml(MENU_ICON));
     iconRegistry.addSvgIconLiteral('refresh-icon', sanitizer.bypassSecurityTrustHtml(REFRESH_ICON));
     iconRegistry.addSvgIconLiteral('list-icon', sanitizer.bypassSecurityTrustHtml(LIST_VIEW_ICON));
@@ -18,7 +21,13 @@ export class HeaderContainerComponent {
     iconRegistry.addSvgIconLiteral('search-icon', sanitizer.bypassSecurityTrustHtml(SEARCH_ICON));
     iconRegistry.addSvgIconLiteral('othermenu-icon', sanitizer.bypassSecurityTrustHtml(OTHER_MENU_ICON));
     iconRegistry.addSvgIconLiteral('image-icon', sanitizer.bypassSecurityTrustHtml(IMG_ICON));
+  
 
-
+  }
+  toggledrawer(){
+    this.handledrawer.emit({drawerState:true})
+  }
+  handleSearchQuery() {
+    this.dataService.updateSearchQuery(this.searchQuery)
   }
 }

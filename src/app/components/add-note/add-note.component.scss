@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 30vh;
+    height: 200px;
 }
 
 .note-add{
@@ -60,6 +60,9 @@
     display: flex;  
     justify-content: space-between;
     width: 500px;
+}
+.close-button{
+    margin-top: 15px;
 }
 
 

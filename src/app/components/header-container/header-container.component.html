@@ -1,14 +1,14 @@
 <div class="header-main">
 
     <div class="header-section1">
-        <button mat-icon-button aria-label="mainmenu button" matTooltip="mainmenu">
+        <button mat-icon-button aria-label="mainmenu button" matTooltip="mainmenu" (click)="toggledrawer()">
             <mat-icon svgIcon="mainmenu-icon" aria-hidden="false" aria-label="add mainmenu icon" style="height: 40px; width: 40px;" ></mat-icon>
         </button>
         <img src="../../../assets/icons8-notes-64.png" alt="img">
     </div>
 
     <div class="header-section2">
-       <input type="search" placeholder="Search..">
+       <input type="search" placeholder="Search.." [(ngModel)]="searchQuery" (input)="handleSearchQuery()">
     </div>
 
     <div class="header-section3">

@@ -22,6 +22,7 @@ import { DashboardContainerComponent } from './components/dashboard-container/da
 import { NotesContainerComponent } from './components/notes-container/notes-container.component';
 import { ArchiveContainerComponent } from './components/archive-container/archive-container.component';
 import { TrashContainerComponent } from './components/trash-container/trash-container.component';
+import { SearchPipe } from './pipe/search.pipe';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { TrashContainerComponent } from './components/trash-container/trash-cont
     NotesContainerComponent,
     ArchiveContainerComponent,
     TrashContainerComponent,
+    SearchPipe,
   ],
   imports: [
     BrowserModule,
