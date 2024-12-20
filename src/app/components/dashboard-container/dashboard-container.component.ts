@@ -25,6 +25,8 @@ handleDrawerState(event:any) {
   this.drawerState=!this.drawerState
 }
 
+
+
 handleNavigation(action:string){
   if(action=='notes'){
     this.router.navigate(["/dashboard/notes"]) ;

@@ -36,10 +36,13 @@
         </button>
         <mat-menu #moreMenu="matMenu">
             <!-- <mat-icon svgIcon="image-icon" aria-hidden="false" aria-label="add mainmenu icon" style="height: 40px; width: 40px;"></mat-icon> -->
+            <div style="display: flex;">
             <img src="../../../assets/v logo.png" alt="Logo" style="height: 40px; width: 40px;" />
+            <button mat-menu-item>{{email}}</button>
+            </div>
             <button mat-menu-item (click)="handleLogout('logout')">Logout</button>
-            <button mat-menu-item>Email</button>
-            <button mat-menu-item>others</button>
+            <!-- <button mat-menu-item>Email:{{email}}</button> -->
+            <!-- <button mat-menu-item>others</button> -->
         </mat-menu>
     </div>
 </div>

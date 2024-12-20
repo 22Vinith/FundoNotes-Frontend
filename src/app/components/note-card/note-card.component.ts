@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NotesService } from 'src/app/services/notes-service/notes.service';
 import { REMINDER_ICON, COLLABRATOR_ICON, COLOR_PALATTE_ICON, IMG_ICON, ARCHIVE_ICON, MORE_ICON, DELETE_FOREVER_ICON, RESTORE_ICON, UNARCHIVE_ICON } from 'src/assets/svg-icons';
+import { AddNoteComponent } from '../add-note/add-note.component';
 
 @Component({
   selector: 'app-note-card',
@@ -14,7 +16,7 @@ export class NoteCardComponent {
   @Output() updateList = new EventEmitter()
   @Input() container: string = "notes"
  
-  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer,private noteServices:NotesService) {
+  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer,private noteServices:NotesService, private dialog: MatDialog) {
     iconRegistry.addSvgIconLiteral('reminder-icon', sanitizer.bypassSecurityTrustHtml(REMINDER_ICON));
     iconRegistry.addSvgIconLiteral('collabrator-icon', sanitizer.bypassSecurityTrustHtml(COLLABRATOR_ICON));
     iconRegistry.addSvgIconLiteral('color-palatte-icon', sanitizer.bypassSecurityTrustHtml(COLOR_PALATTE_ICON));
@@ -25,6 +27,8 @@ export class NoteCardComponent {
     iconRegistry.addSvgIconLiteral('restore-icon', sanitizer.bypassSecurityTrustHtml(RESTORE_ICON));
     iconRegistry.addSvgIconLiteral('unarchive-icon', sanitizer.bypassSecurityTrustHtml(UNARCHIVE_ICON));
   }
+
+
 
   handleNotesIconClick(action: string, color: string = "#ffffff") {
    
@@ -92,5 +96,18 @@ export class NoteCardComponent {
       
     }
     this.updateList.emit({data: this.noteDetails, action: action})
+  }
+
+  handleEditNote() {
+    const dialogRef = this.dialog.open(AddNoteComponent, {
+      data: {
+        expandNote: true,
+        noteDetails: this.noteDetails
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result); 
+      this.updateList.emit({data: result, action: 'edit'})
+    });
   }
 }

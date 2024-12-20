@@ -14,6 +14,19 @@ export class NotesService {
     return header
   }
 
+  getEmailFromToken(): string | null {
+    const token = localStorage.getItem('authToken');
+    if (!token) return null;
+
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1])); // Decode the payload
+      return payload.email || null; // Extract the email
+    } catch (error) {
+      console.error('Error decoding token:', error);
+      return null;
+    }
+  }
+
   //get notes api
   getNotesApiCall():any {
     return this.httpService.getApiCall("http://localhost:3000/api/v1/notes/?page=1&limit=1000", {headers: this.getAuthHeader()})

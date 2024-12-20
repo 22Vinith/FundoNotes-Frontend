@@ -42,7 +42,6 @@ export class NotesContainerComponent implements OnInit, OnDestroy {
 // always keeps emiting those who access it and listening to it(means subscribe )) then the updated string value from the
 // data service is assigned to this 'this.searchQuery' in this file and then it is passed to the search pipe  
 
-
   handleNotesList($event: {data: any, action: string}) {
     console.log($event);
     const {data, action} = $event
@@ -51,7 +50,7 @@ export class NotesContainerComponent implements OnInit, OnDestroy {
     else if(action == "trash" || action == "archive"){
       this.notesList = this.notesList.filter((note: any) => note._id != data._id)
     }
-    else if(action == "color"){
+    else if(action == "color" || action == "edit"){
       this.notesList = this.notesList.map((note) => {
         if(note._id == data._id) return data
         return note

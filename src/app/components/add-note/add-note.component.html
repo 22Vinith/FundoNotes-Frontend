@@ -1,57 +1,87 @@
 <div class="outer-add">
-<div class="note-add" (click)="handleAddNote('toggle')"*ngIf="!expandAddNote else expandNote">
-<span>Take a note...</span>
-<div class="note-add-button">
-<button mat-icon-button aria-label="Brush button" matTooltip="Brush">
-    <mat-icon svgIcon="brush-icon" aria-hidden="false" aria-label="add Brush icon"style="height: 40px; width: 40px;"></mat-icon>
-</button>
-<button mat-icon-button aria-label="list button" matTooltip="List">
-    <mat-icon svgIcon="list-view-icon" aria-hidden="false" aria-label="add list icon"style="height: 40px; width: 40px;"></mat-icon>
-</button>
-<button mat-icon-button aria-label="img button" matTooltip="Add Image">
-    <mat-icon svgIcon="img-icon" aria-hidden="false" aria-label="add image icon"style="height: 40px; width: 40px;"></mat-icon>
-</button>
-</div>
-</div>
+    <div class="note-add" (click)="handleAddNote('toggle')" *ngIf="!expandAddNote else expandNote">
+        <span>Take a note...</span>
+        <div class="note-add-button">
+            <button mat-icon-button aria-label="Brush button" matTooltip="Brush">
+                <mat-icon svgIcon="brush-icon" aria-hidden="false" aria-label="add Brush icon"
+                    style="height: 40px; width: 40px;"></mat-icon>
+            </button>
+            <button mat-icon-button aria-label="list button" matTooltip="List">
+                <mat-icon svgIcon="list-view-icon" aria-hidden="false" aria-label="add list icon"
+                    style="height: 40px; width: 40px;"></mat-icon>
+            </button>
+            <button mat-icon-button aria-label="img button" matTooltip="Add Image">
+                <mat-icon svgIcon="img-icon" aria-hidden="false" aria-label="add image icon"
+                    style="height: 40px; width: 40px;"></mat-icon>
+            </button>
+        </div>
+    </div>
 </div>
 
 <ng-template #expandNote>
-<div class="note">
-    <div class="notechild">
-    <input [(ngModel)]="title" class="title" type="text" placeholder="Title">
-    <input [(ngModel)]="description" class="desc" type="text" placeholder="Description">
-    <div class="buttons">
-        <div class="buttons1">
-        <button mat-icon-button aria-label="reminder button" matTooltip="remainder">
-            <mat-icon svgIcon="remainder-icon" aria-hidden="false" aria-label="add remainder icon" style="height: 40px; width: 40px;"></mat-icon>
-        </button>
-        <button mat-icon-button aria-label="collaborator button" matTooltip="collaborator">
-            <mat-icon svgIcon="collaborator-icon" aria-hidden="false" aria-label="add collaborator icon"style="height: 40px; width: 40px;"></mat-icon>
-        </button>
-        <button mat-icon-button aria-label="colorpallete button" matTooltip="colorpallete">
-            <mat-icon svgIcon="colorpallete-icon" aria-hidden="false" aria-label="add colorpallete icon"style="height: 40px; width: 40px;"></mat-icon>
-        </button>
-        <button mat-icon-button aria-label="img button" matTooltip="img">
-            <mat-icon svgIcon="img-icon" aria-hidden="false" aria-label="add img icon"style="height: 40px; width: 40px;"></mat-icon>
-        </button>  
-        <button mat-icon-button aria-label="archive button" matTooltip="archive">
-            <mat-icon svgIcon="archive-icon" aria-hidden="false" aria-label="add archive icon"style="height: 40px; width: 40px;"></mat-icon>
-        </button>
-        <button mat-icon-button aria-label="more button" matTooltip="more">
-            <mat-icon svgIcon="more-icon" aria-hidden="false" aria-label="add more icon"style="height: 40px; width: 40px;"></mat-icon>
-        </button>
-        <button mat-icon-button aria-label="undo button" matTooltip="undo">
-            <mat-icon svgIcon="undo-icon" aria-hidden="false" aria-label="add undo icon"style="height: 40px; width: 40px;"></mat-icon>
-        </button>
-        <button mat-icon-button aria-label="redo button" matTooltip="redo">
-            <mat-icon svgIcon="redo-icon" aria-hidden="false" aria-label="add redo icon"style="height: 40px; width: 40px;"></mat-icon>
-        </button>
-    </div>
-        <div class="close-button">
-            <button mat-button (click)="handleAddNote('add')" style="font-size: large;">Close</button>
-        </div>
-</div>
-    </div>
-</div>
-</ng-template>
+    <div class="note">
+        <div class="notechild">
+            <input [(ngModel)]="title" class="title" type="text" placeholder="Title">
+            <input [(ngModel)]="description" class="desc" type="text" placeholder="Description">
+            <div class="buttons">
+                <div class="buttons1">
+                    <button mat-icon-button aria-label="reminder button" matTooltip="remainder">
+                        <mat-icon svgIcon="remainder-icon" aria-hidden="false" aria-label="add remainder icon"
+                            style="height: 40px; width: 40px;"></mat-icon>
+                    </button>
+                    <button mat-icon-button aria-label="collaborator button" matTooltip="collaborator">
+                        <mat-icon svgIcon="collaborator-icon" aria-hidden="false" aria-label="add collaborator icon"
+                            style="height: 40px; width: 40px;"></mat-icon>
+                    </button>
 
+                    <!-- Button to trigger the menu -->
+                    <button mat-icon-button aria-label="colorpallete button" matTooltip="Color Palette"
+                        [matMenuTriggerFor]="colorMenu">
+                        <mat-icon svgIcon="colorpallete-icon" aria-hidden="false" aria-label="add colorpallete icon"
+                            style="height: 40px; width: 40px;"></mat-icon>
+                    </button>
+
+                    <mat-menu #colorMenu="matMenu">
+                        <div class="color-palate-cnt">
+                            <div class="col1" matTooltip="Default" (click)="handleColor('#FFFFFF')"></div>
+                            <div class="col2" matTooltip="Coral" (click)="handleColor('#FAAFA8')"></div>
+                            <div class="col3" matTooltip="Peach" (click)="handleColor('#F39F76')"></div>
+                            <div class="col4" matTooltip="Sand" (click)="handleColor('#FFF8B8')"></div>
+                            <div class="col5" matTooltip="Mint" (click)="handleColor('#E2F6D3')"></div>
+                            <div class="col6" matTooltip="Sage" (click)="handleColor('#B4DDD3')"></div>
+                            <div class="col7" matTooltip="Fog" (click)="handleColor('#D4E4ED')"></div>
+                            <div class="col8" matTooltip="Storm" (click)="handleColor('#AECCDC')"></div>
+                            <div class="col9" matTooltip="Dusk" (click)="handleColor('#D3BFDB')"></div>
+                            <div class="col10" matTooltip="Blossom" (click)="handleColor('#F6E2DD')"></div>
+                            <div class="col11" matTooltip="Clay" (click)="handleColor('#E9E3D4')"></div>
+                            <div class="col12" matTooltip="Chalk" (click)="handleColor('#EFEFF1')"></div>
+                        </div>
+                    </mat-menu>
+                    <button mat-icon-button aria-label="img button" matTooltip="img">
+                        <mat-icon svgIcon="img-icon" aria-hidden="false" aria-label="add img icon"
+                            style="height: 40px; width: 40px;"></mat-icon>
+                    </button>
+                    <button mat-icon-button aria-label="archive button" matTooltip="archive">
+                        <mat-icon svgIcon="archive-icon" aria-hidden="false" aria-label="add archive icon"
+                            style="height: 40px; width: 40px;"></mat-icon>
+                    </button>
+                    <button mat-icon-button aria-label="more button" matTooltip="more">
+                        <mat-icon svgIcon="more-icon" aria-hidden="false" aria-label="add more icon"
+                            style="height: 40px; width: 40px;"></mat-icon>
+                    </button>
+                    <button mat-icon-button aria-label="undo button" matTooltip="undo">
+                        <mat-icon svgIcon="undo-icon" aria-hidden="false" aria-label="add undo icon"
+                            style="height: 40px; width: 40px;"></mat-icon>
+                    </button>
+                    <button mat-icon-button aria-label="redo button" matTooltip="redo">
+                        <mat-icon svgIcon="redo-icon" aria-hidden="false" aria-label="add redo icon"
+                            style="height: 40px; width: 40px;"></mat-icon>
+                    </button>
+                </div>
+                <div class="close-button">
+                    <button mat-button (click)="handleAddNote('add')" style="font-size: large;">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

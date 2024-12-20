@@ -1,5 +1,5 @@
 <div class="main" [style.backgroundColor]="noteDetails.color" *ngIf="noteDetails?.title && noteDetails?.description">
-    <div class="spann">
+    <div class="spann" (click)="handleEditNote()">
         <span>{{noteDetails?.title}}</span><br>
         <span>{{noteDetails?.description}}</span>
     </div>

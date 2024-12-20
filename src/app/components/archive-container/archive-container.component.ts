@@ -55,6 +55,12 @@ handleArchiveNotesList($event: { data: any, action: string }) {
       return note
     })
   }
+  else if(action == "color" || action == "edit"){
+    this.archiveList = this.archiveList.map((note) => {
+      if(note._id == data._id) return data
+      return note
+    })
+  }
 } 
 
 ngOnDestroy() {

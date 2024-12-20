@@ -28,7 +28,6 @@ this.trashList=res.data.filter((note:any)=>
       next: (res: string) => {
         this.searchQuery = res
         console.log(res);
-        
       },
       error: (err) => {
         console.log(err);

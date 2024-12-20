@@ -3,7 +3,7 @@
 
     <div *ngFor="let note of notesList | search : searchQuery" style="width: fit-content;">
 
-        <app-note-card [noteDetails]="note" (updateList)="handleNotesList($event)"
-            [container]="'notes'"></app-note-card>
+        <app-note-card [noteDetails]="note" (updateList)="handleNotesList($event)" [container]="'notes'">
+        </app-note-card>
     </div>
 </div>

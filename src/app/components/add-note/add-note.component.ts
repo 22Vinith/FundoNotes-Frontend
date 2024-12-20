@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Optional, Output } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NotesService } from 'src/app/services/notes-service/notes.service';
@@ -13,10 +14,18 @@ export class AddNoteComponent {
   expandAddNote : boolean = false
   title: string = ""
   description: string = ""
+  color: string = "#ffffff"
   @Output() updateList = new EventEmitter<{data: any, action: string}>()
 
-  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private notesService: NotesService) {
-   
+  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private notesService: NotesService,@Optional() @Inject(MAT_DIALOG_DATA) public data: any, @Optional() public dialogRef: MatDialogRef<AddNoteComponent>) {
+   console.log(data);
+    if(data) {
+      const {expandNote, noteDetails} = data
+      this.expandAddNote = expandNote
+      this.title = noteDetails.title
+      this.description = noteDetails.description
+      this.color = noteDetails.color
+    }
     iconRegistry.addSvgIconLiteral('img-icon', sanitizer.bypassSecurityTrustHtml(IMG_ICON));
     iconRegistry.addSvgIconLiteral('list-view-icon', sanitizer.bypassSecurityTrustHtml(LIST_VIEW_ICON));
     iconRegistry.addSvgIconLiteral('brush-icon', sanitizer.bypassSecurityTrustHtml(BRUSH_ICON));
@@ -33,9 +42,11 @@ export class AddNoteComponent {
   handleAddNote(action: string){
     this.expandAddNote = !this.expandAddNote; // Toggles the note state
     //action add then call api
+    if(this.data) action = "edit"
+    
     if(action == "add") {
       console.log(this.title, this.description);
-      this.notesService.addNoteApiCall({title: this.title, description: this.description}).subscribe({
+      this.notesService.addNoteApiCall({title: this.title, description: this.description, color: this.color}).subscribe({
         next: (res: any) => {
           console.log(res);
           this.updateList.emit({data: res.data, action: "add"})
@@ -44,6 +55,26 @@ export class AddNoteComponent {
           console.log(err); 
         }
       })
-    }  
+    }
+
+    else if(action == "edit") {
+      //call update api
+      const {noteDetails} = this.data
+      this.notesService.updateApiCall({...noteDetails, title: this.title, description: this.description, color: this.color}).subscribe({
+        next: (res: any) => {
+          console.log(res);
+          this.updateList.emit({data: res.data, action: "edit"})
+        },
+        error: (err: any) => {
+          console.log(err); 
+        }
+      })
+      // const {noteDetails} = this.data
+      this.dialogRef.close({...noteDetails, title: this.title, description: this.description})
+    }
+  }
+
+  handleColor(color:string){
+    this.color=color
   }
 }
