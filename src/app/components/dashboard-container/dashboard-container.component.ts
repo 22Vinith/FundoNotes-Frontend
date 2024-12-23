@@ -7,7 +7,10 @@ import { ARCHIVE_ICON, EDIT_ICON, NOTE_ICON, REMINDER_ICON, TRASH_ICON } from 's
 @Component({
   selector: 'app-dashboard-container',
   templateUrl: './dashboard-container.component.html',
-  styleUrls: ['./dashboard-container.component.scss']
+  styleUrls: ['./dashboard-container.component.scss'],
+  host: {
+    class: 'app-dashboard-cnt'
+  }
 })
 export class DashboardContainerComponent {
   drawerState: boolean = false

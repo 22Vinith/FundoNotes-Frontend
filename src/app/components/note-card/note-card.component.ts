@@ -9,7 +9,10 @@ import { AddNoteComponent } from '../add-note/add-note.component';
 @Component({
   selector: 'app-note-card',
   templateUrl: './note-card.component.html',
-  styleUrls: ['./note-card.component.scss']
+  styleUrls: ['./note-card.component.scss'],
+  host: {
+    class: 'app-note-card-cnt'
+  }
 })
 export class NoteCardComponent {
   @Input() noteDetails: any = {} 

@@ -1,4 +1,4 @@
-<div class="outer-add">
+<div class="outer-add" >
     <div class="note-add" (click)="handleAddNote('toggle')" *ngIf="!expandAddNote else expandNote">
         <span>Take a note...</span>
         <div class="note-add-button">
@@ -19,10 +19,10 @@
 </div>
 
 <ng-template #expandNote>
-    <div class="note">
+    <div class="note" [style.backgroundColor]="color">
         <div class="notechild">
-            <input [(ngModel)]="title" class="title" type="text" placeholder="Title">
-            <input [(ngModel)]="description" class="desc" type="text" placeholder="Description">
+            <input  [style.backgroundColor]="color" [(ngModel)]="title" class="title" type="text" placeholder="Title">
+            <input [style.backgroundColor]="color" [(ngModel)]="description" class="desc" type="text" placeholder="Description">
             <div class="buttons">
                 <div class="buttons1">
                     <button mat-icon-button aria-label="reminder button" matTooltip="remainder">

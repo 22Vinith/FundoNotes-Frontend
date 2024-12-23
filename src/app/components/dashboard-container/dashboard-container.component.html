@@ -1,10 +1,10 @@
 <app-header-container (handledrawer)="handleDrawerState($event)"></app-header-container>
 
-<mat-drawer-container class="example-container" [hasBackdrop]="false">
+<mat-drawer-container class="drawer" [hasBackdrop]="false">
 
     <mat-drawer #drawer [mode]="'over'" [opened]="drawerState">
         <div class="outer">
-            <div style="display: flex; ">
+            <div style="display: flex;">
                 <button mat-icon-button aria-label="note button" matTooltip="note" (click)="handleNavigation('notes')">
                     <mat-icon svgIcon="note-icon" aria-hidden="false" aria-label="add note icon"
                         style="height: 40px; width: 40px;"></mat-icon>
@@ -26,14 +26,16 @@
                 <span>Edit</span>
             </div>
             <div style="display: flex;">
-                <button mat-icon-button aria-label="archive button" matTooltip="archive" (click)="handleNavigation('archive')">
+                <button mat-icon-button aria-label="archive button" matTooltip="archive"
+                    (click)="handleNavigation('archive')">
                     <mat-icon svgIcon="archive-icon" aria-hidden="false" aria-label="add archive icon"
                         style="height: 40px; width: 40px;"></mat-icon>
                 </button>
                 <span>Archive</span>
             </div>
             <div style="display: flex;">
-                <button mat-icon-button aria-label="trash button" matTooltip="trash" (click)="handleNavigation('trash')">
+                <button mat-icon-button aria-label="trash button" matTooltip="trash"
+                    (click)="handleNavigation('trash')">
                     <mat-icon svgIcon="trash-icon" aria-hidden="false" aria-label="add trash icon"
                         style="height: 40px; width: 40px;"></mat-icon>
                 </button>
@@ -42,9 +44,9 @@
         </div>
     </mat-drawer>
     <mat-drawer-content class="drawer">
-        <div style="width: 100%; display: flex;">
-             
-            <div class="icons" (mouseover)="handleDrawerState($event)" >
+        <div class="dashboard-icons-outlet-cnt">
+
+            <div class="dashboard-nav-icons-cnt">
                 <button mat-icon-button aria-label="note button" matTooltip="note" (click)="handleNavigation('notes')">
                     <mat-icon svgIcon="note-icon" aria-hidden="false" aria-label="add note icon"
                         style="height: 40px; width: 40px;"></mat-icon>
@@ -57,17 +59,21 @@
                     <mat-icon svgIcon="edit-icon" aria-hidden="false" aria-label="add edit icon"
                         style="height: 40px; width: 40px;"></mat-icon>
                 </button>
-                <button mat-icon-button aria-label="archive button" matTooltip="archive" (click)="handleNavigation('archive')">
+                <button mat-icon-button aria-label="archive button" matTooltip="archive"
+                    (click)="handleNavigation('archive')">
                     <mat-icon svgIcon="archive-icon" aria-hidden="false" aria-label="add archive icon"
                         style="height: 40px; width: 40px;"></mat-icon>
                 </button>
-                <button mat-icon-button aria-label="trash button" matTooltip="trash" (click)="handleNavigation('trash')">
-                    <mat-icon svgIcon="trash-icon" aria-hidden="false" aria-label="add trash icon"
-                        style="height: 40px; width: 40px;"></mat-icon>
+                <button mat-icon-button aria-label="trash button" matTooltip="trash"
+                    (click)="handleNavigation('trash')">
+                    <mat-icon svgIcon="trash-icon" aria-hidden="false" aria-label="add trash icon"  style="height: 40px; width: 40px;"></mat-icon>
                 </button>
             </div>
-        <router-outlet></router-outlet>
-    </div>
+            <div class="dashboard-outlet-cnt">
+                <router-outlet></router-outlet>
+
+            </div>
+        </div>
     </mat-drawer-content>
 
 </mat-drawer-container>

@@ -23,6 +23,7 @@ export class RegisterComponent implements OnInit {
       confirmPassword:['',[Validators.required,Validators.minLength(6)]]
     });
   }
+  get signupControls() {return this.registerForm.controls}
 
   get registerControls() { return this.registerForm.controls }
 
@@ -37,6 +38,7 @@ export class RegisterComponent implements OnInit {
        this.userService.registerApiCall({firstname: firstName,lastname: lastName,email,password}).subscribe({next: (res) => {
         console.log(res); 
         localStorage.setItem("authToken", "")  
+        this.router.navigate(['']);
       }, error: (err) => {
         console.log(err);
       }})
