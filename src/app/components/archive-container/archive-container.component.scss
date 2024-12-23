@@ -1,0 +1,19 @@
+::ng-deep .app-notes-cnt {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    flex-direction: column;
+}
+.note-card-list-cnt{
+   display: flex;
+   flex-wrap: wrap;
+   width: 100%;
+    justify-content: center;
+   margin-top: 30px;
+}
+.note-card-loop-cnt {
+    width: 27.5%;
+    max-width: 450px;
+    display: flex;
+
+}

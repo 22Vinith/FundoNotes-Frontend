@@ -9,13 +9,11 @@
    display: flex;
    flex-wrap: wrap;
    width: 100%;
-//    margin-left: 40px;
-    justify-content: center;
+   justify-content: center;
    margin-top: 30px;
 }
 .note-card-loop-cnt {
     width: 27.5%;
-    
     max-width: 450px;
     display: flex;
 
@@ -23,23 +21,6 @@
 
 
 
-// @media screen and (min-width: 551px) and (max-width: 950px){
-//     .note-card-loop-cnt {
-//         background-color: blue !important;
-//     }
-// }
 
-// @media screen and (min-width: 1000px) {
-//     .note-card-loop-cnt {
-//         background-color: yellow !important;
-//     }
-// }
-
-// @media screen and (min-width: 300px) and (max-width: 550px) {
-//     .note-card-loop-cnt {
-//         background-color: red !important;
-//         width: 90% 
-//     }
-// }
 
 

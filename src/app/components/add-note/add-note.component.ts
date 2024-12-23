@@ -62,7 +62,7 @@ export class AddNoteComponent {
     else if(action == "edit") {
       //call update api
       const {noteDetails} = this.data
-      this.notesService.updateApiCall({...noteDetails, title: this.title, description: this.description, color: this.color,isArchive:this.isArchive}).subscribe({
+      this.notesService.updateApiCall({...noteDetails, title: this.title, description: this.description, color: this.color}).subscribe({
         next: (res: any) => {
           console.log(res);
           this.updateList.emit({data: res.data, action: "edit"})
