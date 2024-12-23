@@ -4,8 +4,8 @@
 
     <mat-drawer #drawer [mode]="'over'" [opened]="drawerState">
         <div class="outer">
-            <div style="display: flex;">
-                <button mat-icon-button aria-label="note button" matTooltip="note" (click)="handleNavigation('notes')">
+            <div style="display: flex;" (click)="handleNavigation('notes')">
+                <button mat-icon-button aria-label="note button" matTooltip="note" >
                     <mat-icon svgIcon="note-icon" aria-hidden="false" aria-label="add note icon"
                         style="height: 40px; width: 40px;"></mat-icon>
                 </button>
@@ -25,17 +25,17 @@
                 </button>
                 <span>Edit</span>
             </div>
-            <div style="display: flex;">
+            <div style="display: flex;" (click)="handleNavigation('archive')">
                 <button mat-icon-button aria-label="archive button" matTooltip="archive"
-                    (click)="handleNavigation('archive')">
+                    >
                     <mat-icon svgIcon="archive-icon" aria-hidden="false" aria-label="add archive icon"
                         style="height: 40px; width: 40px;"></mat-icon>
                 </button>
                 <span>Archive</span>
             </div>
-            <div style="display: flex;">
+            <div style="display: flex;" (click)="handleNavigation('trash')">
                 <button mat-icon-button aria-label="trash button" matTooltip="trash"
-                    (click)="handleNavigation('trash')">
+                    >
                     <mat-icon svgIcon="trash-icon" aria-hidden="false" aria-label="add trash icon"
                         style="height: 40px; width: 40px;"></mat-icon>
                 </button>

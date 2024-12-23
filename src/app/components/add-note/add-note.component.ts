@@ -15,6 +15,7 @@ export class AddNoteComponent {
   title: string = ""
   description: string = ""
   color: string = "#ffffff"
+  isArchive : boolean = false
   @Output() updateList = new EventEmitter<{data: any, action: string}>()
 
   constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private notesService: NotesService,@Optional() @Inject(MAT_DIALOG_DATA) public data: any, @Optional() public dialogRef: MatDialogRef<AddNoteComponent>) {
@@ -25,6 +26,7 @@ export class AddNoteComponent {
       this.title = noteDetails.title
       this.description = noteDetails.description
       this.color = noteDetails.color
+      
     }
     iconRegistry.addSvgIconLiteral('img-icon', sanitizer.bypassSecurityTrustHtml(IMG_ICON));
     iconRegistry.addSvgIconLiteral('list-view-icon', sanitizer.bypassSecurityTrustHtml(LIST_VIEW_ICON));
@@ -45,11 +47,11 @@ export class AddNoteComponent {
     if(this.data) action = "edit"
     
     if(action == "add") {
-      console.log(this.title, this.description);
-      this.notesService.addNoteApiCall({title: this.title, description: this.description, color: this.color}).subscribe({
+      console.log(this.title, this.description,this.isArchive);
+      this.notesService.addNoteApiCall({title: this.title, description: this.description, color: this.color,isArchive:this.isArchive}).subscribe({
         next: (res: any) => {
           console.log(res);
-          this.updateList.emit({data: res.data, action: "add"})
+          this.updateList.emit({data: res.data, action: this.isArchive ? "archive" : "add"})
         },
         error: (err: any) => {
           console.log(err); 
@@ -60,7 +62,7 @@ export class AddNoteComponent {
     else if(action == "edit") {
       //call update api
       const {noteDetails} = this.data
-      this.notesService.updateApiCall({...noteDetails, title: this.title, description: this.description, color: this.color}).subscribe({
+      this.notesService.updateApiCall({...noteDetails, title: this.title, description: this.description, color: this.color,isArchive:this.isArchive}).subscribe({
         next: (res: any) => {
           console.log(res);
           this.updateList.emit({data: res.data, action: "edit"})
@@ -69,12 +71,16 @@ export class AddNoteComponent {
           console.log(err); 
         }
       })
-      // const {noteDetails} = this.data
+      
       this.dialogRef.close({...noteDetails, title: this.title, description: this.description})
     }
+
   }
 
   handleColor(color:string){
     this.color=color
+  }
+  handleArchive(archive:boolean){
+    this.isArchive=archive
   }
 }

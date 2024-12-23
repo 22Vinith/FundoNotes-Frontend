@@ -34,7 +34,7 @@
                             style="height: 40px; width: 40px;"></mat-icon>
                     </button>
 
-                    <!-- Button to trigger the menu -->
+                    
                     <button mat-icon-button aria-label="colorpallete button" matTooltip="Color Palette"
                         [matMenuTriggerFor]="colorMenu">
                         <mat-icon svgIcon="colorpallete-icon" aria-hidden="false" aria-label="add colorpallete icon"
@@ -61,7 +61,7 @@
                         <mat-icon svgIcon="img-icon" aria-hidden="false" aria-label="add img icon"
                             style="height: 40px; width: 40px;"></mat-icon>
                     </button>
-                    <button mat-icon-button aria-label="archive button" matTooltip="archive">
+                    <button mat-icon-button aria-label="archive button" matTooltip="archive" (click)="handleArchive(true)">
                         <mat-icon svgIcon="archive-icon" aria-hidden="false" aria-label="add archive icon"
                             style="height: 40px; width: 40px;"></mat-icon>
                     </button>

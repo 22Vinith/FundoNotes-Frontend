@@ -1,10 +1,11 @@
-<div style="display: flex; flex-wrap: wrap;">
-<div *ngIf="trashList.length==0">
-<h1>No trash notes</h1>
-</div>
+<div style="display: flex; flex-wrap: wrap;" class="note-card-list-cnt">
+  <div *ngIf="trashList.length==0">
+    <h1>No trash notes</h1>
+  </div >
 
-    <div *ngFor="let trash of trashList | search : searchQuery" style="width: fit-content;">  
-        <app-note-card [noteDetails]="trash" (updateList)="handleTrashNotesList($event)"[container]="'trash'"></app-note-card>
-      </div>
-    
+  <div class="note-card-loop-cnt" *ngFor="let trash of trashList | search : searchQuery" >
+    <app-note-card [noteDetails]="trash" (updateList)="handleTrashNotesList($event)"
+      [container]="'trash'"></app-note-card>
+  </div>
+
 </div>
