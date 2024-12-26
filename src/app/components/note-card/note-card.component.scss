@@ -13,16 +13,21 @@
     flex-direction: column;
     justify-content: space-between;
     border-radius: 15px;
+    overflow: hidden; 
+    min-height: 300px; 
+    height: auto; 
 }
 
 .spann{
-    padding:15px;
+    padding:25px;
     font-size: 25px;
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
 }
 
 .button-row {
     display: flex;
-    flex-wrap: wrap; //nowrap
+    flex-wrap: wrap; 
    //  justify-content:;
     align-items: center; 
     gap: 10px; 
@@ -43,7 +48,11 @@
     height: 30px;
     border-radius: 200px;
     margin: 8px 0px;
+    border-radius: 50%;
+    flex-shrink: 0; 
 }
+
+
 .col1 {
     @extend .color-btn;
     background-color: #FFFFFF; 
@@ -104,4 +113,5 @@
     background-color: #EFEFF1;
     border: 1px solid #EFEFF1; 
  }
+
 
