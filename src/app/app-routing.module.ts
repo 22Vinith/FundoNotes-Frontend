@@ -4,6 +4,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AddNoteComponent } from './components/add-note/add-note.component';
 import { NoteCardComponent } from './components/note-card/note-card.component';
+import { AuthGuardService } from './services/auth-guard/auth.guard';
 import { HeaderContainerComponent } from './components/header-container/header-container.component';
 import { DashboardContainerComponent } from './components/dashboard-container/dashboard-container.component';
 import { NotesContainerComponent } from './components/notes-container/notes-container.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardContainerComponent,
+    canActivate: [AuthGuardService],
     children: [
       {
         path: "notes",

@@ -5,5 +5,4 @@
   <div class="note-card-loop-cnt" *ngFor="let note of archiveList | search : searchQuery" >
     <app-note-card [noteDetails]="note" (updateList)="handleArchiveNotesList($event)" [container]="'archive'"></app-note-card>
   </div>
-
 </div>

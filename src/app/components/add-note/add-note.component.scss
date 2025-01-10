@@ -144,7 +144,57 @@
     border: 1px solid #EFEFF1; 
  }
 
+/* Media Queries */
 
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+    .note-add, .notechild {
+      width: 90%; 
+      font-size: 20px; 
+      padding: 10px;
+    }
+  
+    .buttons, .buttons1 {
+      width: 100%;
+      justify-content: center; 
+    }
+  
+    .color-btn {
+      width: 24px;
+      height: 24px;
+      margin: 4px;
+    }
+  }
+  
+  /* Mobile (480px and below) */
+  @media (max-width: 480px) {
+    .note-add, .notechild {
+      width: 100%;
+      font-size: 18px; 
+      padding: 8px;
+    }
+  
+    .buttons, .buttons1 {
+      flex-direction: column; 
+      align-items: center;
+      width: 100%;
+    }
+  
+    .notechild input {
+      font-size: 18px;
+      padding: 10px;
+    }
+  
+    .color-btn {
+      width: 20px; 
+      height: 20px;
+      margin: 2px;
+    }
+  
+    .close-button {
+      margin-top: 10px;
+    }
+  }
 
 
 
